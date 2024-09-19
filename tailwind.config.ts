@@ -29,7 +29,7 @@ export default <Partial<Config>>{
         variant1: "#B83B5E",
         variant2: "#6A2C70",
         darkPrimary: "#0f172a",
-        darkSecondary: "#334155",
+        darkSecondary: "#1e293b",
         darkVariant: "#475569",
         lightPrimary: "#f8fafc",
         lightSecondary: "#f1f5f9",

@@ -4,9 +4,9 @@
       'bg-transparent py-3 md:py-6': !isScrolled,
       'bg-primary dark:bg-darkPrimary py-2': isScrolled,
     }"
-    class="px-4 w-full sticky top-0 z-50 transition-all duration-300"
+    class="w-full sticky top-0 z-50 transition-all duration-300"
   >
-    <div class="container mx-auto">
+    <div class="container mx-auto relative w-full px-8">
       <div class="flex justify-between items-center">
         <div
           class="dark:text-lightPrimary font-bold text-3xl hover:text-secondary dark:hover:text-primary focus:text-secondary dark:focus:text-primary hover:cursor-pointer"
@@ -37,7 +37,11 @@
       <!-- Mobile menu -->
       <div
         v-show="mobileMenu"
-        class="md:hidden pb-5 flex flex-col space-y-5 justify-end place-items-end font-bold text-darkPrimary dark:text-lightPrimary dark:bg-slate-800"
+        class="absolute right-0 top-14 md:hidden pb-5 flex flex-col space-y-5 font-bold bg-lightSecondary w-screen text-darkPrimary dark:text-lightPrimary pe-8 pt-3 text-end"
+        :class="{
+          'dark:bg-darkSecondary': !isScrolled,
+          'dark:bg-darkPrimary py-2': isScrolled,
+        }"
       >
         <HomePartialsNavLink url="/" label="home" />
         <HomePartialsNavLink url="/project" label="project" />

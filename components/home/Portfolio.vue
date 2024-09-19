@@ -1,16 +1,16 @@
 <template>
-  <div class="container mx-auto pb-64">
-    <div class="container mx-auto md:h-[400px] lg:h-[600px] h-72">
+  <div class="container mx-auto pb-32 md:pb-44">
+    <div class="container mx-auto md:h-[400px] lg:h-[450px] h-72">
       <!-- Carousel wrapper -->
       <div class="relative h-full" data-carousel-inner>
         <h2
-          class="text-3xl font-bold leading-tight sm:text-4xl lg:text-5xl mx-auto text-center mb-24"
+          class="text-3xl font-bold leading-tight sm:text-4xl lg:text-5xl mx-auto text-center md:mb-6"
         >
           Portfolio
         </h2>
         <div
           id="default-carousel"
-          class="absolute w-full h-full overflow-hidden rounded-lg"
+          class="absolute w-full h-full overflow-hidden rounded-lg my-8"
           data-carousel="static"
         >
           <HomePartialsPortfolioItem
@@ -25,7 +25,7 @@
 
         <!-- Slider indicators -->
         <div
-          class="flex absolute bottom-[-3rem] md:bottom-[-.1rem] left-1/2 z-30 -translate-x-1/2 space-x-2"
+          class="flex absolute bottom-[.8rem] md:bottom-[.1rem] left-1/2 z-30 -translate-x-1/2 space-x-2"
           data-carousel-indicators
         >
           <button
@@ -46,14 +46,14 @@
         <Icon
           name="material-symbols:arrow-circle-left-outline-rounded"
           type="button"
-          class="absolute left-8 z-40 items-center justify-center w-10 h-10 bg-secondary hover:bg-darkPrimary dark:bg-primary dark:hover:bg-lightSecondary focus:outline-none transition transform bottom-[-7.5rem] md:bottom-[-7rem]"
+          class="absolute left-8 z-40 items-center justify-center w-10 h-10 bg-secondary hover:bg-darkPrimary dark:bg-primary dark:hover:bg-lightSecondary focus:outline-none transition transform bottom-[-3.5rem] md:bottom-[-5rem]"
           @click="prevSlide"
         />
 
         <Icon
           name="material-symbols:arrow-circle-right-outline-rounded"
           type="button"
-          class="absolute right-8 z-40 items-center justify-center w-10 h-10 bg-secondary hover:bg-darkPrimary dark:bg-primary dark:hover:bg-lightSecondary focus:outline-none transition bottom-[-7.5rem] md:bottom-[-7rem]"
+          class="absolute right-8 z-40 items-center justify-center w-10 h-10 bg-secondary hover:bg-darkPrimary dark:bg-primary dark:hover:bg-lightSecondary focus:outline-none transition bottom-[-3.5rem] md:bottom-[-5rem]"
           @click="nextSlide"
         />
       </div>

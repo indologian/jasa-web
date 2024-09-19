@@ -1,5 +1,5 @@
 <template>
-  <section class="container mx-auto py-10 sm:py-16 lg:py-24">
+  <section class="container mx-auto mb-16">
     <div class="container mx-auto">
       <h2
         class="text-3xl font-bold leading-tight sm:text-4xl lg:text-5xl mx-auto text-center"
@@ -8,7 +8,7 @@
       </h2>
 
       <div
-        class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-6 gap-y-12 mt-8 lg:mt-16 text-center"
+        class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-6 gap-y-12 my-12 md:my-20 text-center"
       >
         <div
           class="overflow-hidden bg-lightPrimary dark:bg-darkPrimary rounded-md"

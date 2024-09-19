@@ -9,7 +9,7 @@
         :style="{ backgroundImage: `url('${imageUrl}')` }"
       ></div>
       <div
-        class="bg-white dark:bg-darkPrimary md:py-8 py-4 flex justify-center"
+        class="bg-white dark:bg-darkPrimary md:py-5 py-4 flex justify-center"
       >
         <NuxtLink
           :to="buttonUrl"

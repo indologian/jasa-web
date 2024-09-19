@@ -1,13 +1,13 @@
 <template>
-  <section class="container mb-24">
-    <div class="mx-auto max-w-5xl">
+  <section class="container">
+    <div class="mx-auto max-w-5xl mb-16">
       <h2
-        class="text-3xl mb-24 text-center font-bold leading-tight sm:text-4xl lg:text-5xl"
+        class="text-3xl text-center font-bold leading-tight sm:text-4xl lg:text-5xl"
       >
         Keunggulan
       </h2>
       <div
-        class="grid grid-cols-2 md:grid-cols-4 gap-14 text-center sm:grid-cols-2 gap-y-8 lg:grid-cols-4 sm:gap-12"
+        class="grid grid-cols-2 md:grid-cols-4 gap-14 text-center sm:grid-cols-2 gap-y-8 lg:grid-cols-4 sm:gap-12 my-12 md:my-24"
       >
         <HomePartialsFeatureItem
           title="Mudah"
@@ -22,7 +22,7 @@
         <HomePartialsFeatureItem
           title="Bergaransi"
           iconName="iconamoon:certificate-badge-fill"
-          bgClass="bg-primary"
+          bgClass="bg-darkPrimary"
         />
         <HomePartialsFeatureItem
           title="Responsive"
