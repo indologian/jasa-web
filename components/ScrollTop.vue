@@ -3,7 +3,7 @@
     name="material-symbols:arrow-circle-up"
     v-show="isVisible"
     @click="scrollToTop"
-    class="fixed bottom-4 text-5xl cursor-pointer right-4 bg-secondary shadow hover:bg-darkPrimary dark:hover:bg-lightPrimary transition"
+    class="fixed bottom-6 md:bottom-7 text-5xl cursor-pointer right-6 md:right-5 bg-secondary shadow hover:bg-darkPrimary dark:hover:bg-lightPrimary transition"
   >
     ↑ Top
   </Icon>

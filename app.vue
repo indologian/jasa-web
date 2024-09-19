@@ -6,6 +6,7 @@
     <Navbar />
     <NuxtPage />
     <ScrollTop/>
+    <Chat />
   </div>
   <Footer />
 </template>
