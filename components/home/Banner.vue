@@ -32,7 +32,11 @@
 
   <!-- Hero -->
   <div
-    class="flex items-center justify-center h-[calc(100vh-0.5rem)] md:max-h-[33rem]"
+    class="flex items-center justify-center md:h-[calc(100vh-0.5rem)] md:max-h-[33rem] transition-all duration-300 ease-in-out" 
+    :class="{
+      'h-[calc(100vh-0.5rem)]': !isScrolled,
+      'h-[33rem]': isScrolled,
+    }"
   >
     <div class="max-w-[85rem] h-full mx-auto px-8 sm:px-6 lg:px-8 pt-24 pb-10">
       <!-- Title -->
@@ -69,3 +73,25 @@
   </div>
   <!-- End Hero -->
 </template>
+
+<script lang="ts" setup>
+const isScrolled = ref(false);
+
+function handleScroll() {
+  isScrolled.value = window.scrollY > 0;
+}
+
+function checkInitialScroll() {
+  isScrolled.value = window.scrollY > 0;
+}
+
+onMounted(() => {
+  window.addEventListener("scroll", handleScroll);
+  // Check initial scroll position
+  checkInitialScroll();
+});
+
+onBeforeUnmount(() => {
+  window.removeEventListener("scroll", handleScroll);
+});
+</script>
