@@ -16,9 +16,10 @@ defineProps<Props>();
 
 <template>
   <div
-    class="overflow-hidden bg-lightPrimary dark:bg-darkPrimary rounded-md shadow-xl"
+    class="flex flex-col h-full overflow-hidden bg-lightPrimary dark:bg-darkPrimary rounded-md shadow-xl"
   >
-    <div class="p-8">
+    <!-- price and title -->
+    <div class="flex-grow p-8">
       <h3 class="text-base font-semibold text-secondary dark:text-primary">
         {{ title }}
       </h3>
@@ -47,11 +48,14 @@ defineProps<Props>();
           </span>
         </li>
       </ul>
+    </div>
 
+    <!-- card button -->
+    <div class="mt-auto p-8 pt-0">
       <NuxtLink
         :to="url"
         title=""
-        class="inline-flex items-center justify-center px-10 py-4 mt-10 text-base font-bold text-darkPrimary transition-all duration-200 bg-primary rounded-md hover:bg-secondary focus:bg-secondary hover:text-lightPrimary"
+        class="inline-flex items-center justify-center w-full px-10 py-4 text-base font-bold text-darkPrimary transition-all duration-200 bg-primary rounded-md hover:bg-secondary focus:bg-secondary hover:text-lightPrimary"
         role="button"
       >
         Pesan Sekarang

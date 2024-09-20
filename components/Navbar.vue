@@ -53,8 +53,6 @@
 </template>
 
 <script setup>
-import { onBeforeUnmount, onMounted, ref } from "vue";
-
 const mobileMenu = ref(false);
 const isScrolled = ref(false);
 
@@ -66,8 +64,14 @@ function handleScroll() {
   isScrolled.value = window.scrollY > 0;
 }
 
+function checkInitialScroll() {
+  isScrolled.value = window.scrollY > 0;
+}
+
 onMounted(() => {
   window.addEventListener("scroll", handleScroll);
+  // Check initial scroll position
+  checkInitialScroll();
 });
 
 onBeforeUnmount(() => {

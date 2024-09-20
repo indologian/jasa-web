@@ -1,6 +1,4 @@
 <script setup lang="ts">
-import { onBeforeUnmount, onMounted, ref, watch } from "vue";
-
 interface Message {
   text: string;
   isUser: boolean;
@@ -12,6 +10,7 @@ interface AccordionItem {
   question: string;
   answer: string;
   isOpen: boolean;
+  buttons: string[];
 }
 
 const chatContainer = ref<HTMLElement | null>(null);
@@ -26,17 +25,20 @@ const accordionItems = ref<AccordionItem[]>([
     answer:
       "We offer web development, mobile app development, and UI/UX design services.",
     isOpen: false,
+    buttons: ["Learn More", "Request Quote"],
   },
   {
     question: "How can I contact support?",
     answer:
       "You can contact our support team via email at support@example.com or call us at +1234567890.",
     isOpen: false,
+    buttons: ["Email Support", "Call Support"],
   },
   {
     question: "What are your working hours?",
     answer: "Our team is available Monday to Friday, 9 AM to 5 PM EST.",
     isOpen: false,
+    buttons: ["Schedule Call", "View Calendar"],
   },
 ]);
 
@@ -89,11 +91,14 @@ const respondToUser = (userMessage: string) => {
       "Thank you for your message! How can I assist you today?",
       false
     );
-  }, 500);
 
-  setTimeout(() => {
-    addMessage("", false, true, "Frequently Asked Questions");
-  }, 1000);
+    if (!hasReceivedAccordion()) {
+      setTimeout(() => {
+        addAccordionMessage();
+        markAccordionReceived();
+      }, 1000);
+    }
+  }, 500);
 };
 
 const toggleAccordionItem = (index: number) => {
@@ -115,6 +120,25 @@ const loadMessages = () => {
       false
     );
   }
+};
+
+const hasReceivedAccordion = () => {
+  return localStorage.getItem("receivedAccordion") === "true";
+};
+
+const markAccordionReceived = () => {
+  localStorage.setItem("receivedAccordion", "true");
+};
+
+const addAccordionMessage = () => {
+  addMessage("", false, true, "Frequently Asked Questions");
+};
+
+const handleButtonClick = (buttonText: string) => {
+  // Handle button click here
+  console.log(`Button clicked: ${buttonText}`);
+  addMessage(`You clicked: ${buttonText}`, true);
+  respondToUser(`You selected ${buttonText}`);
 };
 
 // Watch for changes in the messages array and save to localStorage
@@ -156,7 +180,9 @@ watch(
         ref="chatContainer"
         class="fixed z-50 bottom-20 right-0 mx-8 w-auto sm:w-96 max-w-full sm:max-w-md"
       >
-        <div class="bg-white shadow-md rounded-lg w-full">
+        <div
+          class="bg-lightPrimary dark:bg-darkSecondary shadow-md rounded-lg w-full"
+        >
           <div
             class="p-4 border-b bg-primary text-darkPrimary rounded-t-lg flex justify-between items-center"
           >
@@ -196,7 +222,7 @@ watch(
                 :class="
                   message.isUser
                     ? 'bg-primary text-darkPrimary'
-                    : 'bg-gray-200 text-gray-700'
+                    : 'bg-lightSecondary text-darkSecondary dark:bg-darkPrimary dark:text-lightPrimary'
                 "
                 class="rounded-lg py-2 px-4 inline-block"
               >
@@ -209,11 +235,11 @@ watch(
                     <div
                       v-for="(item, itemIndex) in accordionItems"
                       :key="itemIndex"
-                      class="border-b border-gray-300 last:border-b-0"
+                      class="border-b border-darkSecondary dark:border-lightSecondary last:border-b-0"
                     >
                       <div
                         @click="toggleAccordionItem(itemIndex)"
-                        class="flex items-center text-gray-600 w-full overflow-hidden cursor-pointer"
+                        class="flex items-center text-darkSecondary dark:text-lightSecondary w-full overflow-hidden cursor-pointer"
                       >
                         <div
                           class="w-10 px-2 transform transition duration-300 ease-in-out"
@@ -239,7 +265,9 @@ watch(
                         </div>
                         <div class="flex items-center py-3">
                           <div class="mx-3">
-                            <button class="hover:underline">
+                            <button
+                              class="hover:text-secondary dark:hover:text-primary"
+                            >
                               {{ item.question }}
                             </button>
                           </div>
@@ -252,7 +280,17 @@ watch(
                           'h-0 opacity-0 overflow-hidden': !item.isOpen,
                         }"
                       >
-                        {{ item.answer }}
+                        <p class="mb-2">{{ item.answer }}</p>
+                        <div class="flex space-x-2">
+                          <button
+                            v-for="(buttonText, buttonIndex) in item.buttons"
+                            :key="buttonIndex"
+                            @click="handleButtonClick(buttonText)"
+                            class="bg-secondary hover:bg-primary text-darkPrimary dark:text-lightPrimary font-bold py-1 px-2 rounded text-sm"
+                          >
+                            {{ buttonText }}
+                          </button>
+                        </div>
                       </div>
                     </div>
                   </div>
