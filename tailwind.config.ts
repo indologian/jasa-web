@@ -24,10 +24,10 @@ export default <Partial<Config>>{
     },
     extend: {
       colors: {
-        primary: "#F9ED69",
-        secondary: "#F08A5D",
-        variant1: "#B83B5E",
-        variant2: "#6A2C70",
+        primary: "#FFF0D1",
+        secondary: "#795757",
+        variant1: "#664343",
+        variant2: "#3B3030",
         darkPrimary: "#0f172a",
         darkSecondary: "#1e293b",
         darkVariant: "#475569",

@@ -204,7 +204,7 @@ watch(
     >
       <button
         @click="toggleChatbox"
-        class="bg-primary text-darkPrimary p-3 rounded-full hover:bg-darkPrimary hover:text-lightPrimary transition duration-300 flex items-center"
+        class="bg-secondary text-lightPrimary p-3 rounded-full hover:bg-darkPrimary hover:text-lightPrimary transition duration-300 flex items-center"
       >
         <Icon name="solar:chat-line-bold" class="w-5 h-5 cursor-pointer" />
       </button>
