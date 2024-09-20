@@ -2,11 +2,20 @@
   <div>
     <NuxtRouteAnnouncer />
   </div>
-  <div class="bg-lightSecondary dark:bg-slate-800 dark:text-lightPrimary">
-    <Navbar />
+  <NuxtLayout>
     <NuxtPage />
-    <ScrollTop/>
-    <Chat />
-  </div>
-  <Footer />
+  </NuxtLayout>
 </template>
+
+<style>
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+}
+</style>

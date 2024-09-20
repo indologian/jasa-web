@@ -42,19 +42,53 @@ const accordionItems = ref<AccordionItem[]>([
   },
 ]);
 
+// New ref for dynamic button position
+const buttonPosition = ref({ bottom: "20px", right: "20px" });
+const chatPosition = ref({ bottom: "20px", right: "20px" });
+
 function handleScroll() {
   isScrolled.value = window.scrollY > 200;
+  updateButtonPosition();
+}
+
+function updateButtonPosition() {
+  const footer = document.querySelector("footer");
+  if (!footer) return;
+
+  const footerRect = footer.getBoundingClientRect();
+  const viewportHeight = window.innerHeight;
+
+  if (footerRect.bottom < viewportHeight) {
+    // Footer is in view, position button above it
+    buttonPosition.value.bottom = `${
+      viewportHeight - footerRect.bottom + 20
+    }px`;
+
+    chatPosition.value.bottom = `${viewportHeight - footerRect.bottom + 75}px`;
+  } else {
+    // Footer is not in view, use default position
+    buttonPosition.value.bottom = "25px";
+    chatPosition.value.bottom = "80px";
+  }
+
+  // Update right position based on scroll
+  buttonPosition.value.right = isScrolled.value ? "5rem" : "1rem";
+  chatPosition.value.right = isScrolled.value ? "-.1rem" : "-.1rem";
 }
 
 onMounted(() => {
   window.addEventListener("scroll", handleScroll);
+  window.addEventListener("resize", updateButtonPosition);
   loadMessages();
+  updateButtonPosition(); // Initial position update
 });
 
 onBeforeUnmount(() => {
   window.removeEventListener("scroll", handleScroll);
+  window.removeEventListener("resize", updateButtonPosition);
 });
 
+//  ============= methods
 const toggleChatbox = () => {
   isChatboxOpen.value = !isChatboxOpen.value;
 };
@@ -141,6 +175,13 @@ const handleButtonClick = (buttonText: string) => {
   respondToUser(`You selected ${buttonText}`);
 };
 
+// Watch for changes in isChatboxOpen
+watch(isChatboxOpen, () => {
+  nextTick(() => {
+    updateButtonPosition();
+  });
+});
+
 // Watch for changes in the messages array and save to localStorage
 watch(
   messages,
@@ -153,11 +194,12 @@ watch(
 
 <template>
   <div>
+    <!-- button toggle chat bot -->
     <div
-      class="fixed z-50 mb-4 mr-4 transition-all duration-300 ease-in-out"
-      :class="{
-        'bottom-3 right-[4.5rem]': isScrolled,
-        'bottom-3 right-4': !isScrolled,
+      class="fixed z-50 transition-all duration-300 ease-in-out"
+      :style="{
+        bottom: buttonPosition.bottom,
+        right: buttonPosition.right,
       }"
     >
       <button
@@ -167,6 +209,8 @@ watch(
         <Icon name="solar:chat-line-bold" class="w-5 h-5 cursor-pointer" />
       </button>
     </div>
+    <!-- end button toggle chat bot -->
+
     <transition
       enter-active-class="transition ease-out duration-300"
       enter-from-class="opacity-0 scale-95"
@@ -178,7 +222,11 @@ watch(
       <div
         v-show="isChatboxOpen"
         ref="chatContainer"
-        class="fixed z-50 bottom-20 right-0 mx-8 w-auto sm:w-96 max-w-full sm:max-w-md"
+        class="fixed z-50 mx-8 w-auto sm:w-96 max-w-full sm:max-w-md"
+        :style="{
+          bottom: chatPosition.bottom,
+          right: chatPosition.right,
+        }"
       >
         <div
           class="bg-lightPrimary dark:bg-darkSecondary shadow-md rounded-lg w-full"
@@ -314,6 +362,7 @@ watch(
               Send
             </button>
           </div>
+          <!-- end chat section -->
         </div>
       </div>
     </transition>

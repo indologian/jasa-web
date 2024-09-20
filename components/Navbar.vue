@@ -16,11 +16,11 @@
 
         <!-- Hamburger menu for small screens -->
         <div class="md:hidden flex">
-          <DarkModeToggler class="pe-4" />
+          <DarkModeToggler />
           <Icon
             name="material-symbols:notes"
             @click="toggle"
-            class="text-2xl my-3 md:my-0 font-semibold transition-all duration-200 bg-secondary rounded-md"
+            class="text-2xl my-3 ms-3 md:my-0 font-semibold transition-all duration-200 bg-secondary rounded-md"
           />
         </div>
 
