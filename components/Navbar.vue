@@ -3,7 +3,7 @@
     'bg-transparent py-3 md:py-6': !isScrolled,
     'bg-primary dark:bg-darkPrimary py-2': isScrolled,
   } " class="w-full sticky top-0 z-50 transition-all duration-300">
-    <div class="container mx-auto relative w-full px-8">
+    <div class="container mx-auto relative w-full lg:max-w-6xl px-8">
       <div class="flex justify-between items-center">
         <NuxtLink to="/"
           class="dark:text-lightPrimary font-bold text-3xl hover:text-secondary dark:hover:text-primary focus:text-secondary dark:focus:text-primary hover:cursor-pointer">
