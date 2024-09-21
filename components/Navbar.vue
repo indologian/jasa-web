@@ -33,7 +33,11 @@
         enter-to-class="max-h-screen opacity-100" leave-active-class="transition-all duration-300 ease-in-out"
         leave-from-class="max-h-screen opacity-100" leave-to-class="max-h-0 opacity-0">
         <div v-if="mobileMenu"
-          class="absolute right-0 top-14 md:hidden pb-5 flex flex-col space-y-5 font-bold bg-lightSecondary w-screen text-darkPrimary dark:text-lightPrimary pe-8 pt-3 text-end overflow-hidden">
+          class="absolute right-0 top-14 md:hidden pb-5 flex flex-col space-y-5 font-bold w-screen text-darkPrimary dark:text-lightPrimary pe-8 pt-3 text-end overflow-hidden"
+          :class=" {
+            'bg-lightPrimary dark:bg-darkSecondary py-3 md:py-6': !isScrolled,
+            'bg-primary dark:bg-darkPrimary py-2': isScrolled,
+          } ">
           <HomePartialsNavLink @click=" toggleMobileMenu " url="/" label="home"
             iconName="material-symbols:android-google-home" />
           <HomePartialsNavLink @click=" toggleMobileMenu " url="/portfolio" label="portfolio"
