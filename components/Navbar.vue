@@ -13,8 +13,10 @@
         <!-- Hamburger menu for small screens -->
         <div class="md:hidden flex">
           <DarkModeToggler />
-          <Icon name="material-symbols:notes" @click=" toggle "
-            class="text-2xl my-3 ms-3 md:my-0 font-semibold transition-all duration-200 bg-secondary rounded-md" />
+          <Icon v-show=" !mobileMenu " name="material-symbols:notes" @click=" toggleMobileMenu "
+            class="text-2xl my-3 ms-3 md:my-0 font-semibold bg-secondary rounded-md" />
+          <Icon v-show=" mobileMenu " name="material-symbols:close-small-rounded" @click=" toggleMobileMenu "
+            class="text-2xl my-3 ms-3 md:my-0 font-semibold bg-secondary rounded-md" />
         </div>
 
         <!-- Navigation links for large screens -->
@@ -27,16 +29,19 @@
       </div>
 
       <!-- Mobile menu -->
-      <div v-show=" mobileMenu "
-        class="absolute right-0 top-14 md:hidden pb-5 flex flex-col space-y-5 font-bold bg-lightSecondary w-screen text-darkPrimary dark:text-lightPrimary pe-8 pt-3 text-end"
-        :class=" {
-          'dark:bg-darkSecondary': !isScrolled,
-          'dark:bg-darkPrimary py-2': isScrolled,
-        } ">
-        <HomePartialsNavLink url="/" label="home" />
-        <HomePartialsNavLink url="/portfolio" label="portfolio" />
-        <HomePartialsNavLink url="/contact" label="contact" />
-      </div>
+      <transition enter-active-class="transition-all duration-300 ease-in-out" enter-from-class="max-h-0 opacity-0"
+        enter-to-class="max-h-screen opacity-100" leave-active-class="transition-all duration-300 ease-in-out"
+        leave-from-class="max-h-screen opacity-100" leave-to-class="max-h-0 opacity-0">
+        <div v-if="mobileMenu"
+          class="absolute right-0 top-14 md:hidden pb-5 flex flex-col space-y-5 font-bold bg-lightSecondary w-screen text-darkPrimary dark:text-lightPrimary pe-8 pt-3 text-end overflow-hidden">
+          <HomePartialsNavLink @click=" toggleMobileMenu " url="/" label="home"
+            iconName="material-symbols:android-google-home" />
+          <HomePartialsNavLink @click=" toggleMobileMenu " url="/portfolio" label="portfolio"
+            iconName="material-symbols:slideshow-outline" />
+          <HomePartialsNavLink @click=" toggleMobileMenu " url="/contact" label="contact" iconName="ic:baseline-call" />
+        </div>
+      </transition>
+
     </div>
   </nav>
 </template>
@@ -45,7 +50,7 @@
 const mobileMenu = ref(false);
 const isScrolled = ref(false);
 
-function toggle() {
+function toggleMobileMenu() {
   mobileMenu.value = !mobileMenu.value;
 }
 
@@ -59,7 +64,6 @@ function checkInitialScroll() {
 
 onMounted(() => {
   window.addEventListener("scroll", handleScroll);
-  // Check initial scroll position
   checkInitialScroll();
 });
 

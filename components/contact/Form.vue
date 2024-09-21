@@ -1,7 +1,6 @@
 <template>
     <div class="px-8 py-10 bg-lightPrimary dark:bg-darkPrimary rounded-lg
             shadow-xl w-full lg:col-span-2">
-        <div class="w-10 h-10 check-screen"> djnfdsjfnjd</div>
         <form>
             <ContactPartialsInput placeholder="Nama" name="name" />
             <ContactPartialsInput placeholder=" Email" name="email" />

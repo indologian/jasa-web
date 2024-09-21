@@ -1,13 +1,19 @@
 <template>
-  <NuxtLink
-    :to="url"
+  <NuxtLink :to=" url "
     class="dark:text-lightPrimary hover:text-secondary dark:hover:text-primary focus:text-secondary dark:focus:text-primary capitalize"
-    :class="{
-      'text-secondary bg-lightSecondary px-2 rounded-lg dark:bg-transparent dark:text-primary':
+    :class=" {
+      'text-secondary rounded-lg dark:bg-transparent dark:text-primary':
         isActive,
-    }"
-  >
-    {{ label }}
+    } ">
+
+    <div class="flex justify-end items-center">
+      {{ label }}
+      <Icon :name=" iconName ? iconName : '' " class="text-2xl ms-3 md:my-0 font-semibold rounded-md md:hidden" :class=" {
+        'text-secondary rounded-lg dark:bg-transparent dark:text-primary':
+          isActive,
+      } " />
+    </div>
+
   </NuxtLink>
 </template>
 
@@ -18,6 +24,7 @@ import { useRoute } from "vue-router";
 const props = defineProps({
   url: String,
   label: String,
+  iconName: String,
 });
 
 const route = useRoute();

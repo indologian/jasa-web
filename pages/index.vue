@@ -18,9 +18,11 @@ useSeoMeta({
 </script>
 
 <template>
-  <HomeBanner />
-  <HomeFeatures />
-  <HomeServices />
-  <HomePricing />
-  <HomePortfolio />
+  <section >
+    <HomeBanner />
+    <HomeFeatures />
+    <HomeServices />
+    <HomePricing />
+    <HomePortfolio />
+  </section>
 </template>
