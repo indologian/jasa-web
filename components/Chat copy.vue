@@ -61,7 +61,7 @@ function updateButtonPosition() {
   if (footerRect.bottom < viewportHeight) {
     // Footer is in view, position button above it
     buttonPosition.value.bottom = `${
-      viewportHeight - footerRect.bottom + 27
+      viewportHeight - footerRect.bottom + 20
     }px`;
 
     chatPosition.value.bottom = `${viewportHeight - footerRect.bottom + 75}px`;

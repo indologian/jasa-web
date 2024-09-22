@@ -1,6 +1,6 @@
 <template>
   <client-only>
-    <div>
+    <div class="pe-2">
       <Icon
         name="material-symbols:light-mode-rounded"
         v-if="colorMode.preference === 'dark'"
